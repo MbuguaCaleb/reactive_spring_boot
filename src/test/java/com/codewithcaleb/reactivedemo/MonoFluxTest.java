@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 public class MonoFluxTest {
 
 
-    @Test
+
     //when i am dealing with a Single event i use Mono
     public void testMono(){
 
@@ -16,8 +16,7 @@ public class MonoFluxTest {
 
         //Mono <?> means type generic.
         //i can throw exceptions in a mono as well.
-        Mono<?> monoString = Mono.just("caleb-techie")
-                .then(Mono.error(new RuntimeException("Exception Occurred"))).log();
+        Mono<?> monoString = Mono.just("caleb-techie").log();
 
         //handling the exception
         monoString.subscribe(System.out::println,(e)-> System.out.println(e.getMessage()));
@@ -25,7 +24,7 @@ public class MonoFluxTest {
 
 
 
-    @Test
+
     //When publishing multiple events i use Flux
     public void testFlux(){
 
@@ -34,7 +33,7 @@ public class MonoFluxTest {
         //when i want to add something in myFlux,i use concat with
         Flux<String> fluxString = Flux.just("Spring", "Spring Boot", "Hibernate", "MicroService")
                                       .concatWithValues("AWS")
-                                      .concatWith(Flux.error(new RuntimeException("Exception Occurred in Flux")))
+                                     // .concatWith(Flux.error(new RuntimeException("Exception Occurred in Flux")))
                                       .concatWithValues("Cloud")
                                       .log();
 
